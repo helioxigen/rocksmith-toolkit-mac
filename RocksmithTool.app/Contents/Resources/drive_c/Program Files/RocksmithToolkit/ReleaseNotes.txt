@@ -1,0 +1,88 @@
+Rocksmith Toolkit Release Notes
+
+- improved large file out of memory exception handling and messages
+- changed audio/tone volume (LF) min/max range (45 to -45) user suggestion
+- fixed update Arrangement Identification bug
+- updated RocksmithToolkitLib.SongAppId.xml dlc AppIds
+- improved auto repair of some old toolkit multitone exceptions
+- volume ranges settable from 0 to -30 with defaults representative of odlc
+- fixed packer/unpacker PromptComplete now comes to front
+- autoconvert old template relative path format to the new format
+- added additional exception handling for corrupt '*.dlc.xml' templates
+- fixed LoadFromFolder custom font handling
+- improved arrangement detection/validation
+- improvements to Xbox360 GameVersion detection
+- added optionalProperties metadata to Song2014 xml for Japanese Artist and Song
+- improved error checking in CDLC Creator
+- fixed issues with the way CDCL Creator handles jvocal repackaging
+- improved compatibility with CustomFontGenerator (special thanks to iminashi)
+- added CultureInfo to log
+- simplified custom exception messages to encourage users to read them
+- added toolkit library validation check
+- improved tone name error handling
+- unpacker audio naming fixes
+- restored missing toolkit CLI executables
+- added DDC Unit Testing to RocksmithToolkitGUI.Tests
+- merged PsarcLoader into PSARC namespace
+- improved robustness of unpacker exception handling
+- extract remaining salvageable artifacts if archive is corrupt
+- fixed Quick Add to work with directory names that contain '.' periods
+- fixed representative arrangement bug
+- DDC tab menu reports errors correctly instead of throwing a misleading exception
+- Import Package will autosave xml template if General Config>Autosave Templates is enabled
+  (turn off autosave if you do not want to unknowingly overwrite existing xml templates)
+- use existing wem files if provided without checking for Wwise installation
+- fix invalid artifact naming so that unpacker can extract any recoverable data
+- prevent Unpacker CLI from redirecting standard output for dds to png conversions
+- added error handler for TreeViewOfd exceptions
+- added additional flexibility to Quick Add feature
+- only show the display setting warning on first run if applicable
+- improved App.config file compatibility
+- added additional popup messages to Auto Updater to help users with process
+- added system display setting logging and verification
+- fixed VS Sandbox error that occurs when using newer version of .NET Framework
+- fixed known VS MouseUp glitch in CDLC Creator GUI
+- added tooltip warning to the audio path textbox about existing preview audio files
+- added verbose messages to '<ERROR> DLCPackageData is null' exception
+- fixed CDLC 2 Tab menu generator
+- fixed AlbumArtPath exceptions caused by image file names that have extra underscores '_'
+  (thanks to cu1t for the contribution and pull request) 
+- fixed arrangement represent bug
+- improved verification of external apps
+- added app.config file (may avoid some errors)
+- fixed Auto Updater to work with new file directory structure and improved function
+- set "Auto Update" to true in GeneralConfig as default and force use of latest build
+- added 'assemblyPath' enumeration to Auto Update feature
+- switched ReleaseNotes to ascii text file format for web browser viewing
+- updated RocksmithPreBuild.exe to include new versioning methods
+- improved ReadVolumeFactor parsing method to account for different bnk formats
+- added new support for Mac Wineskin wrappers
+- updated to DDC v3.6 thanks to Chlipouni
+- revised sortable field validation to be more consistent with ODLC
+- added support to CDLC Creator to preserve tagger.org artwork
+- rewrote AppId Updater code as a memory process to improve overall performance 
+- fixed typo/bug in GenerateSng
+- correctly set manifest boolean property 'SKU' so that CDLC are not tagged as DLC in the in-game setlist.
+- applied a perma fix to prevent creating property values in the designer when the CDLC Creator GUI design is modified (fixes empty PackageVersion and Platform issues)
+- improved RS1 to RS2014 and RS2014 to RS1 conversions and better tone conversions
+- improved RS1 Import Package function to collect more accurate package data
+- add arrangement represent (Default/Bonus/Alternate) validation to CDLC Creator
+- save most recent 'Default Project Folder' to Configuration from 'Quick Add'
+- added volume validation check when loading data
+- toolkit CDLC Creator uses the EOF Track>Rocksmith>Arrangement type> Default, Bonus, Alternate properties as set by default by EOF or as selected by the charter in EOF.  The toolkit  alerts users if there are more than 5 usable instrument arrangements entered (Remastered Max5 Limit) into the CDLC Creator.
+- added Custom Open File Dialog to CDLC Creator 'Quick Add' button which allows arrangements to be entered in any specified order.  The order of Arrangement and Tone lists can be changed using Shift+Up/Down Arrow (see popup tooltips in CDLC Creator).
+- fixed Mac Wine/Mono third party application processing
+- fixed audio file type filtering in CDLC Creator
+- remove all periods "." from sortable fields to avoid issues with sorting and file naming
+- make _RSToolkit Logger available in application for Global use
+- added Package Rating to toolkit.version file to track user rating of CDLC
+- fixed Toolkit Auto Updater button action and caption
+- Wwise Path can now be completely cleared and reset in the Configure menu so that it is possible for user to switch to/from Wwise versions as needed to convert RS2014 to RS1 and then switch back.
+- fixed some VS IDE issues with DDC tab menu
+- added automatic RS2014 to RS1 CDLC Converter.  Hover mouse over RS2014 radio button in 'Game Version' groupbox to see quick how-to instructions.  You must have Wwise 2010.3.3 exact version installed from http://www.saintsrowmods.com/forum/pages/wwise and also set toolkit >Configuration>Wwise Path for auto conversion to work.
+
+
+Please let the toolkit developers know if experience any issues with this beta (good reports or bug reports).  Always make sure you are able to reproduce the issue with the latest toolkit beta before filing a bug report. 
+
+
+User Tip:  Windows 10 users can unblock the toolkit DLL's and EXE's by running the following command in Windows PowerShell 'gci ./toolkit | unblock-file'.

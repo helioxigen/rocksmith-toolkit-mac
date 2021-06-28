@@ -1,0 +1,22 @@
+2021-06-27 23:54:47.6083 | RocksmithToolkitGUI.Program (INFO) : 
+ RocksmithToolkitGUI.Program.Main 
+  - RocksmithToolkitGUI: v2.9.2.1-a60453fa
+  - RocksmithToolkitLib: v2.9.2.1-a60453fa [1/6/2021 8:45:10 PM]
+  - RocksmithToolkitUpdater: v2.9.2.1-a60453fa
+  - Dynamic Difficulty Creator: v3.6
+  - OS: Microsoft Windows NT 5.1.2600 Service Pack 3 (32 bit)
+  - .NET Framework Runtime: v4.0.30319.1
+  - CultureInfo: (en-US) 
+  - Current Local DateTime: [6/27/2021 11:54:47 PM]
+  - Current UTC DateTime: [6/27/2021 8:54:47 PM]
+  - JIT: MsX86
+  - WINE_INSTALLED: False
+  - MacOSX: False  
+
+2021-06-27 23:54:51.1956 | RocksmithToolkitGUI.Program (INFO) : 
+ RocksmithToolkitGUI.MainForm.MainForm_Shown 
+  - App.config Status (Load Successful)
+  - System Display DPI Setting (96)
+  - System Display Screen Scale Factor (133.6111%) 
+  - Adjusted AutoScaleDimensions, AutoScaleMode, and AutoSize 
+

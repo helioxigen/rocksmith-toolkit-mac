@@ -1,0 +1,18 @@
+warning: taskset/cpuset not available on your platform!
+Executing mkdir -p /Users/rolling/Applications/Wineskin/RocksmitTheTool.app/Contents
+Using winetricks 20210206-next - sha256sum: c0a29eebfcbec261fcec1cd541f102587c523e03cdb07266c57ead7ca59e8f77 with wine-5.0 and WINEARCH=win32
+Executing w_do_call dotnetcore2
+Executing mkdir -p /Users/rolling/Applications/Wineskin/RocksmitTheTool.app/Contents
+Executing load_dotnetcore2 
+Executing mkdir -p /Users/rolling/.cache/winetricks/dotnetcore2
+Executing cd /Users/rolling/.cache/winetricks/dotnetcore2
+Downloading https://download.visualstudio.microsoft.com/download/pr/73a0ea97-57d6-4263-ac36-ea3a9b373bcf/cd5f7e08e749c1d3468cdae89e4518de/dotnet-runtime-2.1.17-win-x86.exe to /Users/rolling/.cache/winetricks/dotnetcore2
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0 21.0M    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 19 21.0M   19 4224k    0     0  3467k      0  0:00:06  0:00:01  0:00:05 3465k 38 21.0M   38 8240k    0     0  3711k      0  0:00:05  0:00:02  0:00:03 3710k 55 21.0M   55 11.6M    0     0  3696k      0  0:00:05  0:00:03  0:00:02 3694k 70 21.0M   70 14.8M    0     0  3601k      0  0:00:05  0:00:04  0:00:01 3600k 85 21.0M   85 18.1M    0     0  3553k      0  0:00:06  0:00:05  0:00:01 3763k100 21.0M  100 21.0M    0     0  3512k      0  0:00:06  0:00:06 --:--:-- 3524k
+Executing cd /Users/rolling/Applications/Wineskin/RocksmitTheTool.app/Wineskin.app/Contents/Resources
+Executing cd /Users/rolling/.cache/winetricks/dotnetcore2
+Executing wine dotnet-runtime-2.1.17-win-x86.exe
+------------------------------------------------------
+warning: Note: command wine dotnet-runtime-2.1.17-win-x86.exe returned status 1. Aborting.
+------------------------------------------------------

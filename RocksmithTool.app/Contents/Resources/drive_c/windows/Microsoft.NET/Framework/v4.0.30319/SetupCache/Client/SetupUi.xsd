@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://schemas.microsoft.com/SetupUI/2008/01/imui"
+            xmlns:imui="http://schemas.microsoft.com/SetupUI/2008/01/imui"
+            targetNamespace="http://schemas.microsoft.com/SetupUI/2008/01/imui"
+  elementFormDefault="qualified"
+attributeFormDefault="unqualified"
+>
+
+  <xs:annotation>
+    <xs:documentation>
+      Copyright (c) Microsoft Corporation.  All rights reserved.
+      Schema for describing DevDiv "Setup UI Info"
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:element name="SetupUI">
+    <xs:annotation>
+      <xs:documentation>specifies UI dll, and lists of MSIs MSPs and EXEs</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element ref="UI"      minOccurs="1" maxOccurs="1"></xs:element>
+          <xs:element ref="Strings" minOccurs="1" maxOccurs="1"></xs:element>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="UI">
+    <xs:annotation>
+      <xs:documentation>UI Info</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ResourceDll" type="DllFileNameOnlyType" minOccurs="1" maxOccurs="1"/>
+        <!-- xs:element name="SetupIcon" type="IconFileNameOnlyType" minOccurs="0" maxOccurs="1"/ -->
+        <xs:element ref="SplashScreen" minOccurs="1" maxOccurs="1"/>
+        <xs:element ref="LCIDHints" minOccurs="0" maxOccurs="1"></xs:element>
+        <xs:element ref="Windows" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="SplashScreen">
+    <xs:annotation>
+      <xs:documentation>Splash screen data</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element name="FileName" type="FileNameOnlyType" minOccurs="1" maxOccurs="1"></xs:element>
+          <xs:element name="Hide" type="HideType" minOccurs="1" maxOccurs="1"></xs:element>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="LCIDHints">
+    <xs:annotation>
+      <xs:documentation>LCID hints to use</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="LCIDHint" minOccurs="0" maxOccurs="unbounded"></xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="LCIDHint">
+    <xs:annotation>
+      <xs:documentation>One LCID hint</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="RegKey" type="RegKeyType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="RegValueName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Windows">
+    <xs:annotation>
+      <xs:documentation>Description of windows used</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="WizardImages" minOccurs="1" maxOccurs="1"></xs:element>
+        <xs:element ref="Caption" minOccurs="1" maxOccurs="1"></xs:element>
+        <xs:element ref="WelcomePage" minOccurs="1" maxOccurs="1"></xs:element>
+        <xs:element ref="EulaPage" minOccurs="1" maxOccurs="1"></xs:element>
+        <xs:element ref="SystemRequirementsPage" minOccurs="1" maxOccurs="1"></xs:element>
+        <xs:element ref="ProgressPage" minOccurs="1" maxOccurs="1"></xs:element>
+        <xs:element ref="FinishPage" minOccurs="1" maxOccurs="1"></xs:element>
+        <xs:element ref="MaintenanceModePage" minOccurs="1" maxOccurs="1"></xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="WizardImages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="HeaderImage" type="BitmapFileNameOnlyType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Watermark"   type="BitmapFileNameOnlyType" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name ="Caption">
+    <xs:complexType>
+      <xs:choice>
+        <xs:sequence>
+          <xs:element name="Default"      type="LocIDType" minOccurs="1" maxOccurs="1" />
+          <xs:element name="Install"      type="LocIDType" minOccurs="0" maxOccurs="1" />
+          <xs:element name="Repair"       type="LocIDType" minOccurs="0" maxOccurs="1" />
+          <xs:element name="Uninstall"    type="LocIDType" minOccurs="0" maxOccurs="1" />
+          <xs:element name="CreateLayout" type="LocIDType" minOccurs="0" maxOccurs="1" />
+          <xs:element name="UninstallPatch" type="LocIDType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+        <xs:sequence>
+          <xs:element name="Install"      type="LocIDType" minOccurs="1" maxOccurs="1" />
+          <xs:element name="Repair"       type="LocIDType" minOccurs="1" maxOccurs="1" />
+          <xs:element name="Uninstall"    type="LocIDType" minOccurs="1" maxOccurs="1" />
+          <xs:element name="CreateLayout" type="LocIDType" minOccurs="1" maxOccurs="1" />
+          <xs:element name="UninstallPatch" type="LocIDType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="WelcomePage">
+    <xs:annotation>
+      <xs:documentation>Window Defaults</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:group ref="Show_WelcomePage" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="Hide" type="HideType" minOccurs="1" maxOccurs="1" />
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:group name="Show_WelcomePage">
+    <xs:sequence>
+      <xs:element name="BackButton" type="HideOrTextType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="NextButton" type="TextType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="CancelButton" type="TextType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Static" type="StaticControlType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="SysLink" type="TextAndPlacementType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:group>
+
+
+  <xs:element name="EulaPage">
+    <xs:annotation>
+      <xs:documentation>Window Defaults</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:group ref="Show_EulaPage" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="Hide" type="HideType" minOccurs="1" maxOccurs="1" />
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:group name="Show_EulaPage">
+    <xs:sequence>
+      <!-- Add element for Eula file -->
+      <xs:element name="Title" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="SubTitle" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+      <xs:element ref="File"  minOccurs="1" maxOccurs="1"/>
+      <xs:element name="LicenseTermsCheckbox" type="TextAndOptionalPlacementType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="UserExperienceDataCollection" type="UserExperienceDataCollectionType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="PrintButton" type="HideOrPlacementType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="SaveButton" type="HideOrPlacementType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="BackButton" type="HideOrTextType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="NextButton" type="TextType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="CancelButton" type="TextType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Static" type="StaticControlType"  minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="SysLink" type="TextAndPlacementType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:group>
+
+  <xs:complexType name="UserExperienceDataCollectionType">
+    <xs:sequence>
+      <xs:element name="SQMPermissionCheckbox" type="TextAndOptionalPlacementType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="SysLink" type="TextAndPlacementType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:element name="File">
+    <xs:annotation>
+      <xs:documentation>File</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="FileNameOnlyType">
+          <xs:attribute name="Type" type="FileType" use="optional"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ProgressPage">
+    <xs:annotation>
+      <xs:documentation>Window Defaults</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:group ref="Show_ProgressPage"  minOccurs="1" maxOccurs="1"/>
+          <xs:element name="Hide" type="HideType" minOccurs="1" maxOccurs="1" />
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:group name="Show_ProgressPage">
+    <xs:sequence>
+      <xs:element name="Install" type ="ProgressPageOperationsType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Repair" type ="ProgressPageOperationsType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Uninstall" type ="ProgressPageOperationsType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="CreateLayout" type ="ProgressPageOperationsType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="UninstallPatch" type ="ProgressPageOperationsType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="BackButton" type="HideOrTextType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="NextButton" type="HideOrTextType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="CancelButton" type="TextType" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:complexType name="ProgressPageOperationsType">
+    <xs:sequence>
+      <xs:element name="Title" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="SubTitle" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Static" type="StaticControlType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="SysLink" type="TextAndPlacementType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="FinishPage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Success" type ="FinishPageResultType"   minOccurs="1" maxOccurs="1" />
+        <xs:element name="Failure" type ="FinishPageResultType"   minOccurs="1" maxOccurs="1" />
+        <xs:element name="NothingApplies" type ="FinishPageResultType"   minOccurs="1" maxOccurs="1" />
+        <xs:element name="FinishButton" type="TextType" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="Static" type="StaticControlType" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="SysLink" type="TextAndPlacementType" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="FinishPageResultType">
+    <xs:sequence>
+      <xs:element name="Install" type ="FinishPageContentType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Repair" type ="FinishPageContentType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Uninstall" type ="FinishPageContentType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="CreateLayout" type ="FinishPageContentType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="UninstallPatch" type ="FinishPageContentType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Static" type="StaticControlType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="SysLink" type="TextAndPlacementType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <xs:complexType name="FinishPageContentType">
+    <xs:sequence>
+      <xs:element name="Static" type="StaticControlType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="SysLink" type="TextAndPlacementType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  
+  <xs:element name="MaintenanceModePage">
+    <xs:annotation>
+      <xs:documentation>Window Defaults</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Uninstall" type ="MaintenanceModePageOperationsType" minOccurs="1" maxOccurs="1" />
+        <xs:element name="UninstallPatch" type ="MaintenanceModePageOperationsType" minOccurs="1" maxOccurs="1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="MaintenanceModePageOperationsType">
+    <xs:sequence>
+      <!-- Add elements for radio buttons -->
+      <xs:element name="Title" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="SubTitle" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="RepairRadioButton" type="TextPlacementAndEnableType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="UninstallRadioButton" type="TextPlacementAndEnableType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="UserExperienceDataCollection" type="UserExperienceDataCollectionType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="BackButton" type="HideOrTextType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="NextButton" type="TextType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="CancelButton" type="TextType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Static" type="StaticControlType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="SysLink" type="TextAndPlacementType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:group name="StaticAndSysLink">
+    <xs:sequence>
+      <xs:element name="Static" type="StaticControlType" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="SysLink" type="TextAndPlacementType" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:group>
+
+  <xs:element name="SystemRequirementsPage">
+    <xs:annotation>
+      <xs:documentation>Window Defaults</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Title" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="SubTitle" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:group ref="StaticAndSysLink" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="DiskSpaceInfo" minOccurs="0" maxOccurs="1" >
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Text" type="LocIDType" minOccurs="1" maxOccurs="1" />
+              <xs:element name="Placement" minOccurs="0" maxOccurs="1" >
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Drive1" type="PlacementType" minOccurs="1" maxOccurs="1" />
+                    <xs:element name="Drive2" type="PlacementType" minOccurs="1" maxOccurs="1" />
+                    <xs:element name="Drive3" type="PlacementType" minOccurs="1" maxOccurs="1" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ProcessStatusIcon" type="PlacementType" minOccurs="0" maxOccurs="1" />
+        <xs:element name="ProcessListBox" type="PlacementType" minOccurs="0" maxOccurs="1" />
+        <xs:element name="ServiceStatusIcon" type="PlacementType" minOccurs="0" maxOccurs="1" />
+        <xs:element name="ServiceListBox" type="PlacementType" minOccurs="0" maxOccurs="1" />
+        <xs:element name="RefreshButton" type="TextAndOptionalPlacementType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="BackButton" type="HideOrTextType" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="NextButton" type="TextType" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="CancelButton" type="TextType" minOccurs="0" maxOccurs="1"/>
+        <xs:group ref="StaticAndSysLink" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:complexType name="HideType">
+    <xs:attribute name="Unused" type="xs:string" use="optional" >
+      <xs:annotation>
+        <xs:documentation>Unused</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  
+  <xs:complexType name="TextAndOptionalPlacementType">
+    <xs:sequence>
+      <xs:element name="Text" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+      <xs:group ref="PlacementGroup" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TextAndPlacementType">
+    <xs:sequence>
+      <xs:element name="Text" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+      <xs:group ref="PlacementGroup" minOccurs="1" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="StaticControlType">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Icon" type="IconFileNameOnlyType" minOccurs="1" maxOccurs="1" />
+        <xs:element name="Bitmap" type="BitmapFileNameOnlyType" minOccurs="1" maxOccurs="1" />
+        <xs:sequence>
+          <xs:element name="Text" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="Font" type="FontType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+      </xs:choice>
+      <xs:group ref="PlacementGroup" minOccurs="1" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+
+
+
+  <xs:complexType name="FontType">
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="Size" type="FontSizeType" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TextPlacementAndEnableType">
+    <xs:sequence>
+      <xs:element name="Text" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Enable" type="TrueOrFalseType" minOccurs="0" maxOccurs="1"/>
+      <xs:group ref="PlacementGroup" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  
+
+  <xs:group name="PlacementGroup">
+    <xs:sequence>
+      <xs:element name="X" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Y" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Width" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Height" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:group>
+  
+  <xs:complexType name="PlacementType">
+    <xs:sequence>
+      <xs:group ref="PlacementGroup" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="HideOrPlacementType">
+    <xs:sequence>
+      <xs:choice>
+        <xs:group ref="PlacementGroup" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Hide" type="HideType" minOccurs="1" maxOccurs="1"></xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="HideOrTextType">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Text" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Hide" type="HideType" minOccurs="1" maxOccurs="1"></xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TextType">
+    <xs:sequence>
+      <xs:element name="Text" type="LocIDType" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+  <!-- SIMPLE TYPES -->
+  
+  <xs:simpleType name="OpeationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Installing" />
+      <xs:enumeration value="Repairing" />
+      <xs:enumeration value="Uninstalling" />
+      <xs:enumeration value="CreateLayout" />
+      <xs:enumeration value="UninstallingPatch" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="FileType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RTF" />
+      <xs:enumeration value="HTML" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  
+  <xs:simpleType name="ResultType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="Failure" />
+      <xs:enumeration value="NothingApplies" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  
+  <xs:simpleType name="TrueOrFalseType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="([Tt][Rr][Uu][Ee]|[Ff][aA][Ll][Ss][Ee])"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="FontSizeType">
+    <xs:restriction base="xs:unsignedInt">
+      <xs:minInclusive value="8" />
+      <xs:maxInclusive value="40" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="LocIDType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="#\(loc.[A-Za-z0-9_]+\)"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  
+  <xs:simpleType name="RegKeyType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(HKCU|HKLM|HKU|HKCR)\\.+"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  
+  <xs:simpleType name="FileNameOnlyType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[^\?|&gt;&lt;:/\*&quot;\\]{1,259}|([!$])\(loc\.[_A-Za-z][0-9A-Za-z_.]*\)" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  
+  <xs:simpleType name="BitmapFileNameOnlyType">
+    <xs:restriction base="FileNameOnlyType">
+      <xs:pattern value=".+\.[Bb][Mm][Pp]" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="IconFileNameOnlyType">
+    <xs:restriction base="FileNameOnlyType">
+      <xs:pattern value=".+\.[Ii][Cc][Oo]" />
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:simpleType name="DllFileNameOnlyType">
+    <xs:annotation>
+      <xs:documentation>Values of this type will look like: "Long File Name.extension".  Legal long names contain no more than 260 characters and must contain at least one non-period character.  The following characters are not allowed: \ ? | &gt; : / * " or less-than.  The name must be shorter than 260 characters.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="FileNameOnlyType">
+      <xs:pattern value=".+\.[Dd][Ll][Ll]" />
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:simpleType name="FilePathType">
+    <xs:annotation>
+      <xs:documentation>Values of this type will look like: "Long File Name.extension".  Legal long names contain no more than 260 characters and must contain at least one non-period character.  The following characters are not allowed: \ ? | &gt; : / * " or less-than.  The name must be shorter than 260 characters.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[^\?|&gt;&lt;:/\*&quot;]{1,259}|([!$])\(loc\.[_A-Za-z][0-9A-Za-z_.]*\)" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  
+  <xs:element name="Strings">
+    <xs:annotation>
+      <xs:documentation>All UI strings</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <!-- Reflective property page -->
+        <xs:element name="IDS_IS_REALLY_CANCEL" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <!-- System Requirements page -->
+        <xs:element name="SYSREQPAGE_REQUIRED_AND_AVAILABLE_DISK_SPACE" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <!-- Welcome page -->
+        <xs:element name="IDS_WELCOME_CREATE_LAYOUT_2S" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_WELCOME_NOTAPPLICABLE_FORMAT_1S" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_CHECKING_CONFIGURATION" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_CANCELLING" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_PLEASE_WAIT" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <!-- Double Progress page -->
+        <xs:element name="IDS_PROGRESS_PAGE_DOWNLOAD_STARTING" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_PROGRESS_PAGE_DOWNLOAD_COMPLETE" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_PROGRESS_PAGE_TIME_REMAINING_FORMAT_3I" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <!-- Maintenance Mode page -->
+        <!-- none -->
+
+        <!-- Finish page -->
+        <!-- none -->
+
+        <!-- Wizard command buttons -->
+        <xs:element name="IDS_IS_BACK" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_IS_NEXT" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_IS_FINISH" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_IS_CANCEL" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <!-- resource selector -->
+        <xs:element name="IDS_PREPARING_CREATE_LAYOUT" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_CREATE_LAYOUT_PROGRESS_BAR_HEADER" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_CREATE_LAYOUT_PROGRESS_STATUS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_CREATE_LAYOUT_SUCCESS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+                
+        <xs:element name="IDS_PREPARING_INSTALLATION" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_INSTALL_PROGRESS_BAR_HEADER" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_INSTALL_PROGRESS_STATUS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_INSTALL_SUCCESS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <xs:element name="IDS_PREPARING_REPAIR" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_REPAIR_PROGRESS_BAR_HEADER" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_REPAIR_PROGRESS_STATUS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_REPAIR_SUCCESS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <xs:element name="IDS_PREPARING_UNINSTALL" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_UNINSTALL_PROGRESS_BAR_HEADER" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_UNINSTALL_PROGRESS_STATUS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_UNINSTALL_SUCCESS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <xs:element name="IDS_PREPARING_UNINSTALLPATCH" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_UNINSTALLPATCH_PROGRESS_BAR_HEADER" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_UNINSTALLPATCH_PROGRESS_STATUS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_UNINSTALLPATCH_SUCCESS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <xs:element name="IDS_ROLLINGBACK" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <xs:element name="IDS_PREPARING_DOWNLOAD" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_DOWNLOAD_PROGRESS_BAR_HEADER" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_DOWNLOAD_PROGRESS_STATUS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_DOWNLOAD_SUCCESS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <xs:element name="IDS_PREPARING_FILE_VERIFICATION" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_FILE_VERIFICATION_PROGRESS_BAR_HEADER" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_FILE_VERIFICATION_PROGRESS_STATUS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_FILE_VERIFICATION_SUCCESS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <xs:element name="IDS_WAITING_FOR_ANOTHER_INSTALL_TO_COMPLETE" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        
+        <!-- Blockers dialog -->
+        <xs:element name="IDS_BLOCK_DIALOGS_SYSLINK_TEXT" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_INSTALL_ABORTED_DESCRIPTION_FORMAT_1S" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_INSTALL_WARNING_DESCRIPTION_FORMAT" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_INSTALLATION_BLOCKERS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_PRE_INSTALLATION_WARNINGS" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_CLOSE" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_CONTINUE" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <!-- Reboot dialog -->
+        <xs:element name="IDS_REBOOT_REQUIRED" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_RESTART_LATER" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="IDS_RESTART_NOW" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <!-- Uninstall dialog -->
+        <xs:element name="IDS_UNINSTALL_QUERY" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <!-- MSI busy dialog -->
+        <xs:element name="IDS_IS_MSI_BUSY" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <!-- MSI 3.1 required dialog -->
+        <xs:element name="IDS_MSI31_REQUIRED" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+
+        <!-- Only one intance of package allowed to run dialog -->
+        <xs:element name="IDS_ONEINSTANCEALLOWED_TEXT" type="LocIDType" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

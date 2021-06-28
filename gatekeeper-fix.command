@@ -1,0 +1,1 @@
+sudo xattr -drs com.apple.quarantine /Applications/RocksmithTool.app/Contents/Resources/drive_c/Program\ Files/RocksmithToolkit
